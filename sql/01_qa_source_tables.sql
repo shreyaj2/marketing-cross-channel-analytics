@@ -8,12 +8,12 @@ Tables: facebook_ads, google_ads, tiktok_ads
 */
 
 -- =========================
--- 0) Quick smoke test: preview
+-- 0) Quick schema test: preview
 -- =========================
-SELECT * FROM `hale-photon-487521-p2.ads_demo.facebook_ads` LIMIT 10;
-SELECT * FROM `hale-photon-487521-p2.ads_demo.google_ads` LIMIT 10;
-SELECT * FROM `hale-photon-487521-p2.ads_demo.tiktok_ads` LIMIT 10;
-
+SELECT table_name, column_name, data_type, is_nullable, ordinal_position
+FROM `hale-photon-487521-p2.ads_demo.INFORMATION_SCHEMA.COLUMNS`
+WHERE table_name IN ('facebook_ads','google_ads','tiktok_ads')
+ORDER BY table_name, ordinal_position;
 
 -- =========================
 -- 1) Row count validation
@@ -237,3 +237,6 @@ SELECT
   SUM(cost) AS spend,
   SUM(conversions)
 FROM `hale-photon-487521-p2.ads_demo.tiktok_ads`;
+
+
+
